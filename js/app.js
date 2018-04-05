@@ -4,5 +4,6 @@ $('#play').on('click', function () {
   $(this).addClass('bounceOutLeft');
 
   loginForm.css('display', 'block');
+  loginForm.removeClass('invisible');
   loginForm.addClass('bounceInRight');
 });
