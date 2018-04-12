@@ -1,0 +1,49 @@
+<% include components/header.ejs %>
+
+    <div class="container">
+      <div class="row mt-5">
+
+        <!-- Left -->
+        <div class="col-lg-6 mt-5">
+          <div class="text-center">
+            <h1>Battaglia Navale</h1>
+            <h4><i class="fa fa-code"></i> with <i class="fa fa-coffee"></i> and <i class="fa fa-heart"></i></h4>
+            <h5>by <a href="https://github.com/christian99salerno">Christian Salerno</a></h5>
+
+            <h4 class="mt-5"><a class="btn btn-success btn" href="/signin">Start Playing</a></h4>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Right, Sign Up Form -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <form action="/signup" method="post">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                  <label for="password2">Password, again</label>
+                  <input type="password" class="form-control" id="password2" name="password2" placeholder="Please repeat the password">
+                </div>
+                <% if (message.length > 0) { %>
+                <div class="form-group">
+                  <div class="alert alert-danger"><%= message %></div>
+                </div>
+                <% } %>
+                <button class="btn btn-primary btn-block" type="submit">Sign Up for Battleship</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<% include components/footer.ejs %>

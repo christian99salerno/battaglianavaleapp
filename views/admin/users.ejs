@@ -1,0 +1,38 @@
+<% include ../components/header.ejs %>
+
+<div class="container">
+
+<h1>Gestione Utenti</h1>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Lastname</th>
+<th>Firstname</th>
+<th>Email</th>
+<th>Password(Hash)</th>
+<th>Ruolo</th>
+<th>Drop</th>
+</tr>
+<tbody>
+<% users.forEach(function (user) { %>
+<tr>
+<td><%= user.local.lastname %></td>
+<td><%= user.local.firstname %></td>
+<td><%= user.local.email %></td>
+<td><%= user.local.password %></td>
+<td><%= user.role %></td>
+<td><form action="/dropuser" method="POST">
+<input type="hidden" name="id" value="<%= user._id %>">
+<input type="submit" value="&times;" class="btn btn-danger">
+</form>
+</td>
+</tr>
+<% }); %>
+</tbody>
+</thead>
+
+</div>
+
+<% include ../components/footer.ejs %>
+
