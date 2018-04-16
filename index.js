@@ -22,7 +22,7 @@ app.use("/js", express.static(path.resolve(__dirname, "js")));
 
 mongoose.Promise = require('bluebird');
 
-mongoose.connect("mongodb://127.0.0.1:27017/battleship", function (err) {
+mongoose.connect("mongodb://127.0.0.1:32768/battleship", function (err) {
 
   if(err) {
     process.exit(1);
