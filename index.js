@@ -11,8 +11,11 @@ const routesLogin = require('./app/login.js');
 const routesUsers = require('./app/users.js');
 const routesAdmin = require('./app/admin.js');
 const routesAdminUser = require('./app/adminuser.js');
+const routesMatch = require('./app/match.js');
 
 const app = express();
+const http = require("http").Server(app)
+const io = require("socket.io").(http)
 
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -28,7 +31,7 @@ mongoose.connect("mongodb://127.0.0.1:32768/battleship", function (err) {
     process.exit(1);
   }
 
-  app.listen(3000);
+  http.listen(3000);
 
 });
 
@@ -46,6 +49,7 @@ app.use( routesLogin(passport) );
 app.use( routesUsers() );
 app.use( routesAdmin() );
 app.use( routesAdminUser() );
+app.use( routesMatch() );
 
 app.use( function (req, res) {
   res.status(404);
