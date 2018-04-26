@@ -14,8 +14,8 @@ const routesAdminUser = require('./app/adminuser.js');
 const routesMatch = require('./app/match.js');
 
 const app = express();
-const http = require("http").Server(app)
-const io = require("socket.io").(http)
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");

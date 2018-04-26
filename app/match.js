@@ -6,8 +6,10 @@ const router = express.Router();
 
 module.exports = function () {
   router.post('/searchmatch', authUtils.isLoggedIn, function (req, res) {
-    Match.findOne({state: "preparazione"}).exec(function (partita){
-      console.log(partita); 
+  Match.findOne({state: "preparazione"}).exec(function (partita){
+  console.log(partita); 
+
+      //nuova partita in attesa del secondo giocatore
       if(!partita){
       const p = new Match({id_user1:req.user._id})
       p.save(function (err, partita) {
@@ -15,16 +17,19 @@ module.exports = function () {
       idPartita: partita._id });
       });
                   }
+      
+      //associazione con partita già presente
       else if(partita){
-
-
+      Match.update({$set:{id_user2:req.user._id}});
+      res.render('inpreparazione');
                       }
+
     });
   });
 
 router.post('/annullamatch', authUtils.isLoggedIn, function (req, res) {
    console.log("idPartita da cancellare:", req.body.idPartita);
-   Match.remove({idPartita:req.body.idPartita});
+   Match.remove({_id:req.body.idPartita});
    res.render('home');
 });
 

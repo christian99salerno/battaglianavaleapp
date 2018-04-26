@@ -1,6 +1,7 @@
 <% include components/header.ejs %>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/home">Welcome to Battleship</a>
+  <a class="navbar-brand" href="/home">Welcome in Battleship</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -30,11 +31,17 @@
 
 <div class="container">
 
+<div class="row justify-content-center">
+<div class="col-1">
+
 <form action="/searchmatch" method="post">
 
 <button class="btn btn-primary" type="submit">Play</button>
 
 </form>
+
+</div>
+</div>
 
 </div>
 
