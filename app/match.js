@@ -19,10 +19,11 @@ module.exports = function () {
       
     //associazione con partita già presente
     else if(partita){
-      Match.update({ _id: partita._id }, {$set:{id_user2:req.user._id}});
-      res.render('inpreparazione');
+      Match.update({ _id: partita._id }, {id_user2:req.user._id}, function (err) {
+        console.log('err',err);
+        res.render('inpreparazione');
+      });
     }
-
     });
   });
 
