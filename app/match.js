@@ -6,23 +6,22 @@ const router = express.Router();
 
 module.exports = function () {
   router.post('/searchmatch', authUtils.isLoggedIn, function (req, res) {
-  Match.findOne({state: "preparazione"}).exec(function (partita){
-  console.log(partita); 
+  Match.findOne({state: "preparazione"}).exec(function (err, partita){
 
-      //nuova partita in attesa del secondo giocatore
-      if(!partita){
-      const p = new Match({id_user1:req.user._id})
+    //nuova partita in attesa del secondo giocatore
+    if(!partita){
+      const p = new Match({id_user1:req.user._id});
       p.save(function (err, partita) {
-      res.render('incerca',{
-      idPartita: partita._id });
+        res.render('incerca',{
+        idPartita: partita._id });
       });
-                  }
+    }
       
-      //associazione con partita già presente
-      else if(partita){
-      Match.update({$set:{id_user2:req.user._id}});
+    //associazione con partita già presente
+    else if(partita){
+      Match.update({ _id: partita._id }, {$set:{id_user2:req.user._id}});
       res.render('inpreparazione');
-                      }
+    }
 
     });
   });
